@@ -46,3 +46,16 @@ export interface HashProduct extends ProductType {
   };
   selectedToppings: Topping[];
 }
+
+type Address = {
+  isDefault: boolean;
+  text: string;
+};
+
+export type Customer = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  addresses: Address[];
+};

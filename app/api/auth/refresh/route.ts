@@ -19,7 +19,6 @@ export async function GET() {
     );
 
     if (!response.ok) {
-      console.log(`Refresh failed`);
       return Response.json({ success: false });
     }
 
