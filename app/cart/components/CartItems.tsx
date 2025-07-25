@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import CartItem from "./CartItem";
 import { useAppSelector } from "@/lib/store/hooks";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "flowbite-react";
 import { ShoppingCart } from "lucide-react";
 import { calculateTotal } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";

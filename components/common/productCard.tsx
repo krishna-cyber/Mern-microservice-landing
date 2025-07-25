@@ -1,9 +1,8 @@
 import React from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import Image from "next/image";
 import { ProductType } from "@/lib/types";
 import ProductModal from "@/app/(home)/components/productModal";
 import { getMinimumProductPrice } from "@/lib/utils";
+import { Card } from "flowbite-react";
 
 export interface Product {
   _id: string;
@@ -18,28 +17,19 @@ interface PropType {
 
 const ProductCard = ({ product }: PropType) => {
   return (
-    <Card className=" w-lg rounded-lg">
-      <CardHeader>
-        <Image
-          src={product?.image[0]}
-          alt={product?.name}
-          height={140}
-          width={140}
-        />
-      </CardHeader>
-      <CardContent>
-        <h1 className=" text-2xl font-bold ">{product?.name}</h1>
-        <p>{product.description}</p>
-      </CardContent>
-      <CardFooter className=" flex justify-between items-center">
-        <p>
-          <span>From </span>
-          <span className=" font-bold">
-            ${getMinimumProductPrice(product)}{" "}
-          </span>
-        </p>
-        <ProductModal product={product} />
-      </CardFooter>
+    <Card className="max-w-sm" imgSrc={product?.image[0]} horizontal>
+      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        {product?.name}
+      </h5>
+      <p className="font-normal text-gray-700 dark:text-gray-400">
+        {product?.description}
+      </p>
+
+      <p>
+        <span>From </span>
+        <span className=" font-bold">${getMinimumProductPrice(product)} </span>
+      </p>
+      <ProductModal product={product} />
     </Card>
   );
 };

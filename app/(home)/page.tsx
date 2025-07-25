@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "flowbite-react";
 import Image from "next/image";
 import { Suspense } from "react";
 import CategoriesAndProduct from "./components/categoriesAndProductTabs";
@@ -9,6 +9,7 @@ export default async function Home({
 }: Readonly<{
   searchParams: { readonly tenantId: string };
 }>) {
+  const { tenantId } = await searchParams;
   return (
     <>
       <section className=" bg-white  ">
@@ -21,7 +22,10 @@ export default async function Home({
             <p className=" max-w-lg leading-snug">
               Enjoy a free meal if your order takes more than 45 minutes!
             </p>
-            <Button className=" w-fit rounded-full mt-8" size={"lg"}>
+            <Button
+              className=" w-fit rounded-full mt-8 hover:bg-orange-200 bg-orange-400 hover:text-green-400"
+              size={"lg"}
+            >
               Get your pizza now!
             </Button>
           </div>
@@ -37,7 +41,7 @@ export default async function Home({
       <section>
         <div className=" container mx-auto">
           <Suspense fallback={<ProductSkeleton />}>
-            <CategoriesAndProduct searchParams={searchParams} />
+            <CategoriesAndProduct tenantId={tenantId} />
           </Suspense>
         </div>
       </section>

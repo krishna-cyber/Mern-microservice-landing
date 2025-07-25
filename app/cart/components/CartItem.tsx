@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import { Badge } from "@/components/ui/badge";
+
+import { Badge } from "flowbite-react";
 
 import QuantityChanger from "./QuantityChanger";
 import { changeQty, CartItem as Item } from "@/lib/store/feature/cartSlice";
@@ -24,7 +25,7 @@ const ToppingsBadges = ({
         return (
           <Badge
             className=" font-extralight text-black"
-            variant={"secondary"}
+            color={"info"}
             key={value}
           >
             {value}
@@ -33,7 +34,7 @@ const ToppingsBadges = ({
       })}
       {selectedToppings?.map((topping: Topping) => (
         <Badge
-          variant={"secondary"}
+          color={"pink"}
           className=" font-extralight text-black"
           key={topping._id}
         >

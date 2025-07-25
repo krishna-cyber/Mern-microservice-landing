@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
-import { Button } from "../ui/button";
+import { Button } from "flowbite-react";
 import { CircleCheck } from "lucide-react";
 import { Topping } from "@/lib/types";
 
@@ -22,8 +22,8 @@ const ToppingCard = ({
 
   return (
     <Button
+      color={"alternative"}
       onClick={() => handleCheckBoxCheck(topping)}
-      variant={"outline"}
       className={cn(
         "flex flex-col h-42 relative",
         isCurrentSelected ? "border-primary" : ""

@@ -4,7 +4,7 @@ import React from "react";
 import CartMenu from "./cartMenu";
 import { Phone } from "lucide-react";
 import Logout from "./logOut";
-import { Button } from "../ui/button";
+import { Button } from "flowbite-react";
 import { Session } from "@/lib/session";
 import { useSearchParams } from "next/navigation";
 
@@ -14,7 +14,7 @@ const HeaderMenu = ({ session }: { session: Session | null }) => {
   const queryString = searchParams.toString();
   const appendQuery = queryString ? `?${queryString}` : "";
   return (
-    <div className=" flex space-x-3">
+    <div className=" flex space-x-3 items-center gap-">
       <ul className=" list-none flex gap-3">
         <li>
           <Link className="hover:text-primary" href={`/menu${appendQuery}`}>
@@ -38,7 +38,7 @@ const HeaderMenu = ({ session }: { session: Session | null }) => {
         {session ? (
           <Logout />
         ) : (
-          <Button size={"sm"} className=" h-7  py-1">
+          <Button className=" px-4 bg-orange-400 hover:bg-orange-200 hover:text-black">
             <Link href={`/login${appendQuery}`}>Login</Link>
           </Button>
         )}
