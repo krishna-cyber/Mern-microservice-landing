@@ -1,15 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "flowbite-react";
+import { Card } from "flowbite-react";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { getCustomer } from "@/lib/http/api";
 // import { useForm } from "react-hook-form";
 // import * as z from "zod";
@@ -17,18 +11,18 @@ import { getCustomer } from "@/lib/http/api";
 import { Banknote, CreditCard } from "lucide-react";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Textarea } from "@/components/ui/textarea";
+// import { Textarea } from "@/components/ui/textarea";
 
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+// import {
+//   Dialog,
+//   DialogClose,
+//   DialogContent,
+//   DialogDescription,
+//   DialogFooter,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogTrigger,
+// } from "@/components/ui/dialog";
 import { Customer } from "@/lib/types";
 
 const UserForm = () => {
@@ -42,7 +36,7 @@ const UserForm = () => {
   return (
     <section className=" container  mt-8 flex gap-4 justify-around mx-auto">
       <Card className=" w-[40%]">
-        <CardHeader>
+        {/* <CardHeader>
           <CardTitle>Customer Details</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-6">
@@ -141,65 +135,16 @@ const UserForm = () => {
             </div>
           </RadioGroup>
 
-          {/* <div className="grid gap-2">
-            <Label htmlFor="number">Card number</Label>
-            <Input id="number" placeholder="" />
-          </div>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="month">Expires</Label>
-              <Select>
-                <SelectTrigger id="month">
-                  <SelectValue placeholder="Month" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">January</SelectItem>
-                  <SelectItem value="2">February</SelectItem>
-                  <SelectItem value="3">March</SelectItem>
-                  <SelectItem value="4">April</SelectItem>
-                  <SelectItem value="5">May</SelectItem>
-                  <SelectItem value="6">June</SelectItem>
-                  <SelectItem value="7">July</SelectItem>
-                  <SelectItem value="8">August</SelectItem>
-                  <SelectItem value="9">September</SelectItem>
-                  <SelectItem value="10">October</SelectItem>
-                  <SelectItem value="11">November</SelectItem>
-                  <SelectItem value="12">December</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="year">Year</Label>
-              <Select>
-                <SelectTrigger id="year">
-                  <SelectValue placeholder="Year" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.from({ length: 10 }, (_, i) => (
-                    <SelectItem
-                      key={i}
-                      value={`${new Date().getFullYear() + i}`}
-                    >
-                      {new Date().getFullYear() + i}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="cvc">CVC</Label>
-              <Input id="cvc" placeholder="CVC" />
-            </div>
-          </div> */}
+         
 
           <div className="grid w-full gap-3">
             <Label htmlFor="message">Your message</Label>
             <Textarea placeholder="Type your message here." id="message" />
           </div>
-        </CardContent>
+        </CardContent> */}
       </Card>
       <Card className=" w-[40%] h-fit">
-        <CardHeader>
+        {/* <CardHeader>
           <CardTitle>Orders Summary</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-6">
@@ -235,7 +180,7 @@ const UserForm = () => {
           <Button size={"sm"} className=" self-end ml-auto">
             Continue
           </Button>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </section>
   );

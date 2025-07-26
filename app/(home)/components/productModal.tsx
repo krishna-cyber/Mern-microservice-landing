@@ -188,32 +188,7 @@ const ProductModal = ({ product }: Props) => {
                     )}
                   </ul>
 
-                  {/* <RadioGroup
-                    defaultValue={
-                      _.keys(product.priceConfiguration[key].avilableOptions)[0]
-                    }
-                    onValueChange={(data) => {
-                      handlePriceConfiguration(key, data);
-                    }}
-                    className="grid grid-cols-3 gap-4 mt-2"
-                  >
-                    {Object.entries(avilableOptions[index]).map(([key]) => (
-                      <span key={key}>
-                        <RadioGroupItem
-                          value={key}
-                          id={key}
-                          className="peer sr-only "
-                          aria-label={_.capitalize(key)}
-                        />
-                        <Label
-                          htmlFor={key}
-                          className="flex flex-col items-center text-md justify-between rounded-md border-2 bg-white py-1 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                        >
-                          {_.capitalize(key)}
-                        </Label>
-                      </span>
-                    ))}
-                  </RadioGroup> */}
+                
                 </div>
               ))}
 
