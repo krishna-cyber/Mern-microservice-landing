@@ -1,5 +1,5 @@
 "use client";
-import { Button, Label, TextInput, Textarea } from "flowbite-react";
+import { Button, Label, Radio, TextInput, Textarea } from "flowbite-react";
 import { Card } from "flowbite-react";
 // import { Input } from "@/components/ui/input";
 // import { Label } from "@/components/ui/label";
@@ -8,10 +8,9 @@ import { getCustomer } from "@/lib/http/api";
 // import { useForm } from "react-hook-form";
 // import * as z from "zod";
 
-import { Banknote, CreditCard } from "lucide-react";
-import React from "react";
+import { Banknote, CreditCard, SendHorizontal } from "lucide-react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-// import { Textarea } from "@/components/ui/textarea";
 
 // import {
 //   Dialog,
@@ -26,6 +25,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Customer } from "@/lib/types";
 
 const UserForm = () => {
+  const [selectedPayment, setSelectedPayment] = useState<"card" | "cash">(
+    "card"
+  );
+
   const { data: customer } = useQuery<Customer>({
     queryKey: ["customer"],
     queryFn: async () => {
@@ -91,32 +94,82 @@ const UserForm = () => {
             className="grid grid-cols-3 gap-4"
           ></RadioGroup> */}
         </Card>
-        {/* <RadioGroup defaultValue="card" className="grid grid-cols-3 gap-4">
-          <div>
-            <RadioGroupItem value="card" id="card" className="peer sr-only" />
-            <Label
-              htmlFor="card"
-              className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-            >
-              <CreditCard />
-              Card
-            </Label>
+        {/* <RadioGroup defaultValue="card" className="grid grid-cols-3 gap-4"> */}
+        <div className="mb-4">
+          <h6 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+            Payment Method
+          </h6>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label
+                htmlFor="card-payment"
+                className={`flex flex-col items-center justify-between rounded-md border-2 p-4 cursor-pointer transition-all hover:bg-gray-50 ${
+                  selectedPayment === "card"
+                    ? "border-blue-500 bg-blue-50 text-blue-700"
+                    : "border-gray-200 bg-white"
+                }`}
+              >
+                <Radio
+                  id="card-payment"
+                  name="payment-method"
+                  value="card"
+                  className="sr-only"
+                  checked={selectedPayment === "card"}
+                  onChange={() => setSelectedPayment("card")}
+                />
+                <CreditCard
+                  className={`mb-2 ${
+                    selectedPayment === "card"
+                      ? "text-blue-600"
+                      : "text-gray-600"
+                  }`}
+                />
+                <span className="font-medium">Card Payment</span>
+              </Label>
+            </div>
+            <div>
+              <Label
+                htmlFor="cash-payment"
+                className={`flex flex-col items-center justify-between rounded-md border-2 p-4 cursor-pointer transition-all hover:bg-gray-50 ${
+                  selectedPayment === "cash"
+                    ? "border-green-500 bg-green-50 text-green-700"
+                    : "border-gray-200 bg-white"
+                }`}
+              >
+                <Radio
+                  id="cash-payment"
+                  name="payment-method"
+                  value="cash"
+                  className="sr-only"
+                  checked={selectedPayment === "cash"}
+                  onChange={() => setSelectedPayment("cash")}
+                />
+                <Banknote
+                  className={`mb-2 ${
+                    selectedPayment === "cash"
+                      ? "text-green-600"
+                      : "text-gray-600"
+                  }`}
+                />
+                <span className="font-medium">Cash on Delivery</span>
+              </Label>
+            </div>
           </div>
-          <div>
-            <RadioGroupItem
-              value="paypal"
-              id="paypal"
-              className="peer sr-only"
-            />
-            <Label
-              htmlFor="paypal"
-              className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-            >
-              <Banknote />
-              Cash
-            </Label>
+
+          {/* Display selected payment method */}
+          <div className="mt-3 p-3 bg-gray-50 rounded-md">
+            <p className="text-sm text-gray-600">
+              Selected:{" "}
+              <span className="font-medium text-gray-900">
+                {selectedPayment === "card"
+                  ? "Card Payment"
+                  : "Cash on Delivery"}
+              </span>
+            </p>
           </div>
-        </RadioGroup> */}
+        </div>
+
+        {/* </RadioGroup>  */}
 
         <div className="grid w-full gap-3">
           <Label htmlFor="message">Your message or instruction:</Label>
@@ -128,43 +181,45 @@ const UserForm = () => {
         </div>
       </Card>
       <Card className=" w-[40%] h-fit">
-        {/* <CardHeader>
-          <CardTitle>Orders Summary</CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-6">
-          <div className="grid gap-2">
-            <span className=" flex justify-between">
-              <span>SubTotal</span> <span>1200</span>
-            </span>
-            <span className=" flex justify-between">
-              <span>Taxes</span> <span>500</span>
-            </span>
-            <span className=" flex justify-between">
-              <span>Delivery Charges </span> <span>200</span>
-            </span>
-            <span className=" flex justify-between">
-              <span>Discount</span> <span>0</span>
-            </span>
-          </div>
-          <div className="grid grid-cols-6  gap-2">
-            <Input
-              id="name"
-              className=" col-span-5"
-              placeholder="Coupon code"
-            />{" "}
-            <Button variant={"outline"}>Apply</Button>
-          </div>
-          <hr></hr>
-          <span className=" flex justify-between">
-            <span>Order Total</span> <span>1000</span>
-          </span>
-        </CardContent>
+        <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+          Orders Summary
+        </h5>
 
-        <CardFooter className=" py-0 w-full">
-          <Button size={"sm"} className=" self-end ml-auto">
-            Continue
+        <div className="grid gap-2">
+          <span className=" flex justify-between">
+            <span>SubTotal</span> <span>1200</span>
+          </span>
+          <span className=" flex justify-between">
+            <span>Taxes</span> <span>500</span>
+          </span>
+          <span className=" flex justify-between">
+            <span>Delivery Charges </span> <span>200</span>
+          </span>
+          <span className=" flex justify-between">
+            <span>Discount</span> <span>0</span>
+          </span>
+        </div>
+        <div className="grid grid-cols-6 items-center  gap-2">
+          <TextInput
+            id="discount-code"
+            className=" col-span-5"
+            placeholder="Coupon code"
+          />
+
+          <Button size={"sm"} color={"blue"}>
+            Apply
           </Button>
-        </CardFooter> */}
+        </div>
+        <hr></hr>
+        <span className=" flex justify-between">
+          <span>Order Total</span> <span>1000</span>
+        </span>
+
+        {/* <CardFooter className=" py-0 w-full"> */}
+        <Button size={"sm"} className=" flex items-center gap-4 ml-auto">
+          Proceed to payment <SendHorizontal className=" h-4 w-4" />
+        </Button>
+        {/* </CardFooter> */}
       </Card>
     </section>
   );
